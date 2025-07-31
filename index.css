@@ -213,6 +213,16 @@ body {
 
 .contact-item {
     margin-bottom: 2rem;
+    word-break: break-word;
+    min-height: 80px;
+}
+
+@media (max-width: 1199px) {
+    .contact-info .row > div {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .contact-item strong {
