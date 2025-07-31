@@ -31,6 +31,7 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-dark);
     overflow-x: hidden;
+    padding-bottom: 80px;
 }
 
 .arvo-bold {
@@ -46,12 +47,18 @@ body {
     transition: all 0.3s ease;
 }
 
+.navbar-brand {
+    padding: 8px 0;
+}
+
 .navbar-brand img {
     transition: transform 0.3s ease;
+    filter: brightness(1);
 }
 
 .navbar-brand:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    filter: brightness(1.1);
 }
 
 .navbar-nav .nav-link {
@@ -249,8 +256,13 @@ body {
 /* Footer */
 footer {
     background-color: var(--bg-dark);
-    padding: 40px 0 20px;
+    padding: 20px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1020;
 }
 
 .footer-content {
