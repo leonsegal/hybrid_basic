@@ -43,6 +43,7 @@
               height="90px"
             />
           </a>
+
           <button
             class="navbar-toggler"
             type="button"
@@ -51,6 +52,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div
             class="collapse navbar-collapse justify-content-end"
             id="navbarNav"
@@ -59,12 +61,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="#home">Home</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#services">Services</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#about">About</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
@@ -79,12 +84,15 @@
         <div class="container text-center">
           <div class="fade-in">
             <h1 class="hero-title arvo-bold">HYBRID</h1>
+
             <p class="hero-subtitle">STRENGTH & FITNESS</p>
+
             <p class="hero-description">
               Transform your fitness journey with personalized training and
               dynamic group classes in Worthing & Brighton. Build strength,
               improve endurance, and achieve your goals.
             </p>
+
             <a href="#contact" class="cta-button">Start Your Journey</a>
           </div>
         </div>
@@ -99,7 +107,9 @@
                 <div class="service-icon">
                   <i class="bi bi-person-arms-up"></i>
                 </div>
+
                 <h3 class="service-title">Personal Training</h3>
+
                 <p class="service-description">
                   One-on-one sessions tailored to your specific goals. Get
                   personalized attention and customized workout plans designed
@@ -112,7 +122,9 @@
                 <div class="service-icon">
                   <i class="bi bi-people-fill"></i>
                 </div>
+
                 <h3 class="service-title">Group Classes</h3>
+
                 <p class="service-description">
                   High-energy group fitness classes that combine strength
                   training, cardio, and functional movements in a motivating
@@ -125,7 +137,9 @@
                 <div class="service-icon">
                   <i class="bi bi-bullseye"></i>
                 </div>
+
                 <h3 class="service-title">Strength & Conditioning</h3>
+
                 <p class="service-description">
                   Comprehensive strength and conditioning programs designed to
                   improve athletic performance and overall fitness levels.
@@ -139,11 +153,13 @@
       <section id="about" class="section">
         <div class="container">
           <h2 class="section-title">About Hybrid Strength & Fitness</h2>
+
           <div class="about-content">
             <p class="lead">
               Hybrid Strength & Fitness combines the best of strength training
               and functional fitness to help you achieve extraordinary results.
             </p>
+
             <figure class="about-image">
               <img
                 src="./images/barbell.png"
@@ -151,6 +167,7 @@
                 class="img-fluid"
               />
             </figure>
+
             <p>
               Our approach focuses on building a strong foundation through
               proper movement patterns, progressive overload, and sustainable
@@ -164,6 +181,7 @@
       <section id="contact" class="section contact-section">
         <div class="container">
           <h2 class="section-title">Get In Touch</h2>
+
           <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="contact-info">
@@ -176,12 +194,14 @@
                       >
                     </div>
                   </div>
+
                   <div class="col-lg-4 col-12 mb-3">
                     <div class="contact-item">
                       <strong><i class="bi bi-phone"></i> Phone</strong>
                       <a href="tel:+07786546063">07786 546063</a>
                     </div>
                   </div>
+
                   <div class="col-lg-4 col-12 mb-3">
                     <div class="contact-item">
                       <strong><i class="bi bi-geo-alt"></i> Location</strong>
@@ -193,7 +213,12 @@
                     </div>
                   </div>
                 </div>
-                <a href="mailto:tegan.simmonds02@gmail.com?subject=Free Consultation Booking" class="cta-button">Book Your Free Consultation</a>
+
+                <a
+                  href="mailto:tegan.simmonds02@gmail.com?subject=Free Consultation Booking"
+                  class="cta-button"
+                  >Book Your Free Consultation</a
+                >
               </div>
             </div>
           </div>
@@ -213,64 +238,79 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("year").textContent = `${new Date().getFullYear()}`; // prettier-ignore
 
       // Smooth scrolling for navigation links
-      for (let anchor of document.querySelectorAll('a[href^="#"]')) {
-        anchor.addEventListener("click", function (e) {
+      let anchors = document.querySelectorAll('a[href^="#"]');
+      for (let anchor of anchors) {
+        anchor.addEventListener("click", (e) => {
           e.preventDefault();
-          let target = document.querySelector(this.getAttribute("href"));
+
+          let target = document.querySelector(e.currentTarget.getAttribute("href")); // prettier-ignore
           if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-            // Remove focus from the clicked link
-            this.blur();
+            // Get the navbar height to offset the scroll
+            let navbarHeight = document.querySelector(".navbar").offsetHeight;
+
+            // Calculate the element's position and adjust for navbar height
+            let targetPosition =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              navbarHeight +
+              50;
+
+            window.scrollTo({ top: targetPosition, behavior: "smooth" });
+
+            e.currentTarget.blur(); // Remove focus from the clicked link
           }
         });
       }
 
       // Add navbar background on scroll
-      window.addEventListener("scroll", function () {
+      window.addEventListener("scroll", () => {
         let navbar = document.querySelector(".navbar");
-        if (window.scrollY > 50) {
-          navbar.style.backgroundColor = "rgba(10, 10, 10, 0.98)";
-        } else {
-          navbar.style.backgroundColor = "rgba(10, 10, 10, 0.95)";
-        }
+        navbar.style.backgroundColor =
+          window.scrollY > 50
+            ? "rgba(10, 10, 10, 0.98)"
+            : "rgba(10, 10, 10, 0.95)";
       });
 
       // Set up intersection observer for navigation highlighting
-      const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-      
-      const observer = new IntersectionObserver(
+      let navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+      let observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry) => {
-            const id = entry.target.getAttribute("id");
-            const navLink = document.querySelector(`.navbar-nav .nav-link[href="#${id}"]`);
-            
+          for (let entry of entries) {
+            let id = entry.target.getAttribute("id");
+            let navLink = document.querySelector(`.navbar-nav .nav-link[href="#${id}"]`); // prettier-ignore
+
             if (entry.isIntersecting) {
-              // Remove active class from all links
-              navLinks.forEach((link) => link.classList.remove("active"));
-              // Add active class to current link
-              if (navLink) navLink.classList.add("active");
+              for (let link of navLinks) {
+                link.classList.remove("active"); // Remove active class from all links
+              }
+
+              if (navLink) {
+                navLink.classList.add("active"); // Add active class to current link
+              }
             }
-          });
+          }
         },
         {
           rootMargin: "-20% 0px -70% 0px", // Trigger when section is 20% from top
-          threshold: 0
-        }
+          threshold: 0,
+        },
       );
 
-      // Observe all sections
-      sections.forEach((section) => observer.observe(section));
+      let sections = document.querySelectorAll("section[id]");
+      for (let section of sections) {
+        observer.observe(section);
+      }
 
       // Set initial active state
-      document.querySelector('.navbar-nav .nav-link[href="#home"]').classList.add("active");
+      document
+        .querySelector('.navbar-nav .nav-link[href="#home"]')
+        .classList.add("active");
     </script>
   </body>
 </html>
